@@ -3,19 +3,32 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+
+    alias(libs.plugins.androidKmpLibrary)
 }
 
 kotlin {
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
+
+    androidLibrary {
+        compileSdk = 36
+        minSdk = 24
+        namespace = "com.sargis.bookpedia.composeapp"
+        experimentalProperties["android.experimental.kmp.enableAndroidResources"] = true
+
+//        compilerOptions {
+//            jvmTarget.set(JvmTarget.JVM_11)
+//        }
     }
-    
+
+//    androidTarget {
+//        compilerOptions {
+//            jvmTarget.set(JvmTarget.JVM_11)
+//        }
+//    }
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -54,39 +67,43 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
         }
-    }
-}
 
-android {
-    namespace = "com.sargis.bookpedia"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+        iosMain.dependencies {
 
-    defaultConfig {
-        applicationId = "com.sargis.bookpedia"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
 }
 
-dependencies {
-    debugImplementation(libs.compose.uiTooling)
-}
+//android {
+//    namespace = "com.sargis.bookpedia"
+//    compileSdk = libs.versions.android.compileSdk.get().toInt()
+//
+//    defaultConfig {
+//        applicationId = "com.sargis.bookpedia"
+//        minSdk = libs.versions.android.minSdk.get().toInt()
+//        targetSdk = libs.versions.android.targetSdk.get().toInt()
+//        versionCode = 1
+//        versionName = "1.0"
+//    }
+//    packaging {
+//        resources {
+//            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+//        }
+//    }
+//    buildTypes {
+//        getByName("release") {
+//            isMinifyEnabled = false
+//        }
+//    }
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_11
+//        targetCompatibility = JavaVersion.VERSION_11
+//    }
+//}
+//
+//dependencies {
+//    debugImplementation(libs.compose.uiTooling)
+//}
 
 compose.desktop {
     application {
