@@ -1,6 +1,7 @@
 package com.sargis.domain.model
 
 data class Movie(
-    val id: Int,
+    val id: String,
+    val title: String,
     val imageUrl: String
 )
