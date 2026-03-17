@@ -19,15 +19,16 @@ kotlin {
         }
     }
 
-//    listOf(
-//        iosArm64(),
-//        iosSimulatorArm64()
-//    ).forEach { iosTarget ->
-//        iosTarget.binaries.framework {
-//            baseName = "ComposeApp"
-//            isStatic = true
-//        }
-//    }
+    // Was commented
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "ComposeApp"
+            isStatic = true
+        }
+    }
 
     jvm()
 //    jvm("desktop")
@@ -36,7 +37,8 @@ kotlin {
         androidMain.dependencies {
             implementation(projects.feature.search.ui)
 
-            implementation(compose.preview)
+            implementation(libs.compose.ui.tooling)
+            implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.navigation.compose)
         }
@@ -63,8 +65,10 @@ kotlin {
             implementation(libs.kotlin.test)
             implementation(libs.junit)
         }
+//        desktop.dependencies {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
+//            implementation(libs.kotlinx.coroutines.swing)
 //            implementation(libs.kotlinx.coroutinesSwing)
         }
         iosMain.dependencies {
@@ -104,7 +108,6 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
-//compose.desktop {
 compose.desktop {
     application {
         mainClass = "com.sargis.bookpedia.MainKt"

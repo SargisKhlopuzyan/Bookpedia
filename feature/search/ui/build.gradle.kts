@@ -42,6 +42,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(project.dependencies.platform(libs.androidx.compose.bom))
             implementation(libs.compose.ui)
+            implementation(libs.compose.ui.tooling)
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.material3)
             implementation(libs.compose.material)

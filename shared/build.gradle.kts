@@ -33,6 +33,7 @@ kotlin {
             export(project(":feature:details:data"))
             export(project(":feature:details:domain"))
             export(project(":feature:details:ui"))
+
             isStatic = false
             xcf.add(this)
         }

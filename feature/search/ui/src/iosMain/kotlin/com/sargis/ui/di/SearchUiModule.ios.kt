@@ -6,14 +6,14 @@ import org.koin.core.component.get
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-private val viewModelModule = module {
-    factory {
+private val searchViewModelModule = module {
+    single {
         SearchViewModel(get())
     }
 }
 
 actual fun getSearchUiModule(): Module {
-    return viewModelModule
+    return searchViewModelModule
 }
 
 class SearchViewModelProvider() : KoinComponent {

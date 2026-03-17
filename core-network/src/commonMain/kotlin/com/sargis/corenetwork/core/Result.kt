@@ -1,8 +1,8 @@
-package com.sargis.bookpedia.core.domain
+package com.sargis.corenetwork.core
 
 sealed interface Result<out D, out E : Error> {
     data class Success<out D>(val data: D) : Result<D, Nothing>
-    data class Error<out E : com.sargis.bookpedia.core.domain.Error>(val error: E) :
+    data class Error<out E : com.sargis.corenetwork.core.Error>(val error: E) :
         Result<Nothing, E>
 }
 
