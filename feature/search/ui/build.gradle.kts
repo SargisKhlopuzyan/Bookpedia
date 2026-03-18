@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-
     alias(libs.plugins.native.coroutines) // this will expose viewmodel in form of state object in iOS side
 }
 
@@ -32,17 +31,15 @@ kotlin {
         }
 
         androidMain.dependencies {
-//            implementation(libs.coil)
-//            implementation(libs.coil.ktor)
-
             implementation(libs.androidx.core.ktx)
             implementation(libs.androidx.appcompat)
             implementation(libs.androidx.activity.compose)
-//            implementation(project.dependencies.platform(libs.androidx.compose.bom))
+            //            implementation(project.dependencies.platform(libs.androidx.compose.bom))
         }
 
         commonMain.dependencies {
             implementation(projects.feature.search.domain)
+
             implementation(libs.kmp.observableviewmodel.core)
 
             implementation(libs.koin.core)
@@ -54,7 +51,7 @@ kotlin {
 
             implementation(project.dependencies.platform(libs.androidx.compose.bom))
 
-//            implementation(libs.jetbrains.compose.ui.tooling)
+            // implementation(libs.jetbrains.compose.ui.tooling)
             implementation(libs.jetbrains.compose.ui.tooling.preview)
 
             implementation(libs.jetbrains.compose.runtime)
@@ -64,7 +61,6 @@ kotlin {
             implementation(libs.jetbrains.compose.components.resources)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
-
         }
 
         commonTest.dependencies {

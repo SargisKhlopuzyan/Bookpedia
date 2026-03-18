@@ -1,9 +1,12 @@
 package com.sargis.shared.di
 
 import com.sargis.corenetwork.di.getCoreNetworkModule
+import com.sargis.data.di.getDetailsDataModule
 import com.sargis.data.di.getSearchDataModule
+import com.sargis.domain.di.getDetailsDomainModule
 import com.sargis.domain.di.getSearchDomainModule
 import com.sargis.ui.di.getSearchUiModule
+import com.sargis.ui.di.getDetailsUiModule
 import org.koin.core.context.startKoin
 
 fun initKoin() {
@@ -13,9 +16,9 @@ fun initKoin() {
             getSearchUiModule(),
             getSearchDomainModule(),
             getSearchDataModule(),
-            // getDetailsUiModule(),
-            // getDetailsDomainModule(),
-            // getDetailsDataModule(),
+            getDetailsUiModule(),
+            getDetailsDomainModule(),
+            getDetailsDataModule(),
         )
     }
 }

@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.sargis.bookpedia.navigation.BaseNavGraph
+import com.sargis.bookpedia.navigation.DetailsNavGraph
 import com.sargis.bookpedia.navigation.SearchNavGraph
 
 @Composable
@@ -28,7 +29,8 @@ fun App() {
                 startDestination = SearchNavGraph.Dest.Root
             ) {
                 listOf<BaseNavGraph>(
-                    SearchNavGraph
+                    SearchNavGraph,
+                    DetailsNavGraph,
                 ).forEach {
                     it.build(
                         modifier = Modifier

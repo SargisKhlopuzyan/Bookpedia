@@ -44,7 +44,7 @@ kotlin {
     sourceSets {
 
         androidMain.dependencies {
-            implementation(projects.feature.search.ui)
+//            implementation(projects.feature.search.ui)
         }
 
         commonMain.dependencies {

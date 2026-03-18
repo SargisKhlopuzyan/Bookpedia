@@ -5,17 +5,18 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.sargis.ui.SearchScreen
+import androidx.navigation.toRoute
+import com.sargis.ui.DetailsScreen
 import kotlinx.serialization.Serializable
 
-object SearchNavGraph : BaseNavGraph {
+object DetailsNavGraph : BaseNavGraph {
 
     sealed interface Dest {
         @Serializable // This is for type safe navigation
         data object Root : Dest
 
         @Serializable
-        data object Search : Dest
+        data class Details(val movieId: String) : Dest
     }
 
     override fun build(
@@ -23,11 +24,10 @@ object SearchNavGraph : BaseNavGraph {
         navController: NavHostController,
         navGraphBuilder: NavGraphBuilder
     ) {
-        navGraphBuilder.navigation<Dest.Root>(startDestination = Dest.Search) {
-            composable<Dest.Search> {
-                SearchScreen(modifier, onClick = { movieId ->
-                    navController.navigate(DetailsNavGraph.Dest.Details(movieId))
-                })
+        navGraphBuilder.navigation<Dest.Root>(startDestination = Dest.Details::class) {
+            composable<Dest.Details> {
+                val id = it.toRoute<Dest.Details>().movieId
+                DetailsScreen(modifier, id)
             }
         }
     }

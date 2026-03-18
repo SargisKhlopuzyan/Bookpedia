@@ -1,11 +1,11 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-        import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-        plugins {
-            alias(libs.plugins.kotlinMultiplatform)
-            alias(libs.plugins.androidLibrary)
-            alias(libs.plugins.kotlinx.serialization)
-        }
+plugins {
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinx.serialization)
+}
 
 kotlin {
     androidTarget {
@@ -22,11 +22,6 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-//            implementation(libs.kotlinx.serialization)
-//            implementation(libs.ktor.client.core)
-//            implementation(libs.ktor.client.content.negotiation)
-//            implementation(libs.ktor.client.serialization)
-
             implementation(libs.koin.core)
         }
         commonTest.dependencies {
