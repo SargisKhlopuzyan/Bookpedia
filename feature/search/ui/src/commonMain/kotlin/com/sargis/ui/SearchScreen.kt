@@ -3,21 +3,18 @@ package com.sargis.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -25,16 +22,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.SubcomposeAsyncImage
+import com.sargis.coreui.DarkBlue
+import com.sargis.ui.components.MoviesSearchBar
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SearchScreen(
     modifier: Modifier = Modifier,
-    onClick: (String) -> Unit
+    onMovieClick: (String) -> Unit
 ) {
 
     val viewModel = koinViewModel<SearchViewModel>()
@@ -44,35 +44,46 @@ fun SearchScreen(
     SearchScreenContent(
         modifier = modifier,
         query = query,
-        onQueryChange = viewModel::updateQuery,
+        onAction = { action ->
+            when (action) {
+                is MovesAction.OnMoveClick -> onMovieClick(action.move.id)
+                else -> viewModel.onAction(action)
+            }
+        },
         uiState = uiState,
-        onClick = onClick
+        onClick = onMovieClick
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchScreenContent(
+private fun SearchScreenContent(
     modifier: Modifier = Modifier,
     query: String,
-    onQueryChange: (String) -> Unit,
+    onAction: (MovesAction) -> Unit,
     uiState: SearchUiState,
     onClick: (String) -> Unit
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Scaffold(
-        modifier = modifier
-            .fillMaxSize()
-            .windowInsetsPadding(WindowInsets.safeDrawing),
+        modifier = modifier.fillMaxSize(),
         topBar = {
-            TextField(
-                value = query, onQueryChange,
-                colors = TextFieldDefaults.colors().copy(
-                    unfocusedIndicatorColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Transparent
-                ),
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("Search here...") }
+            MoviesSearchBar(
+                searchQuery = query,
+                onSearchQueryChange = {
+                    onAction(MovesAction.OnSearchQueryChange(it))
+                },
+                onImeSearch = {
+                    keyboardController?.hide()
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(DarkBlue)
+                    .statusBarsPadding()
+                    .widthIn(400.dp)
+                    .fillMaxWidth()
+                    .padding(16.dp)
             )
         }
     ) { innerPadding ->
@@ -88,18 +99,18 @@ fun SearchScreenContent(
             }
         }
 
-        if (uiState.error.isNotEmpty()) {
+        if (uiState.error != null) {
             Box(
                 modifier = Modifier
                     .padding(innerPadding)
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Something went wrong....")
+                Text(text = uiState.error.asString())
             }
         }
 
-        uiState.data?.let { results ->
+        uiState.movies?.let { results ->
             LazyColumn(
                 modifier = Modifier
                     .padding(innerPadding)
@@ -148,11 +159,11 @@ fun SearchScreenContent(
 
 @Preview(showBackground = true)
 @Composable
-fun SearchScreenContentPreview() {
+private fun SearchScreenContentPreview() {
     SearchScreenContent(
         query = "Harry Potter",
         uiState = SearchUiState(),
-        onQueryChange = {},
+        onAction = {},
         onClick = {}
     )
 }

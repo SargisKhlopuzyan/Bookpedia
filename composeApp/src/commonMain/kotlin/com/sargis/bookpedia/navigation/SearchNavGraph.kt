@@ -25,7 +25,7 @@ object SearchNavGraph : BaseNavGraph {
     ) {
         navGraphBuilder.navigation<Dest.Root>(startDestination = Dest.Search) {
             composable<Dest.Search> { navBackStackEntry ->
-                SearchScreen(modifier, onClick = { movieId ->
+                SearchScreen(modifier, onMovieClick = { movieId ->
                     navController.navigate(DetailsNavGraph.Dest.Details(movieId))
                 })
             }

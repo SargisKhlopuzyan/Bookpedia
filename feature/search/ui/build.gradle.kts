@@ -62,6 +62,8 @@ kotlin {
             implementation(libs.jetbrains.compose.components.resources)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+
+                implementation(libs.jetbrains.compose.material.icons.extended)
         }
 
         commonTest.dependencies {

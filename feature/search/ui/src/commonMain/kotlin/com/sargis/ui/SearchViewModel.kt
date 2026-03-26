@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.update
 
 // this will expose viewmodel in form of state object in iOS side
@@ -29,15 +28,9 @@ class SearchViewModel(
     @NativeCoroutinesState
     val query = _query.asStateFlow()
 
-    fun updateQuery(q: String) {
-        _query.update { q }
-    }
-
     init {
         viewModelScope.launch {
-            _query.filter {
-                it.isNotEmpty()
-            }.debounce(500)
+            _query.debounce(500)
                 .distinctUntilChanged().collectLatest { query ->
                     _uiState.update {
                         SearchUiState(isLoading = true)
@@ -45,7 +38,7 @@ class SearchViewModel(
                     searchUseCase.execute(query)
                         .onSuccess { data ->
                             _uiState.update {
-                                SearchUiState(isLoading = false, data = data)
+                                SearchUiState(isLoading = false, movies = data)
                             }
                         }.onFailure {
                             _uiState.update {
@@ -53,6 +46,16 @@ class SearchViewModel(
                             }
                         }
                 }
+        }
+    }
+
+    fun onAction(action: MovesAction) {
+        when (action) {
+            is MovesAction.OnSearchQueryChange -> _query.update { action.query }
+            is MovesAction.OnTabSelected -> _uiState.update {
+                it.copy(selectedTabIndex = action.tabIndex)
+            }
+            is MovesAction.OnMoveClick -> {}
         }
     }
 }
