@@ -17,7 +17,7 @@ import com.sargis.domain.model.Movie
 fun MovieList(
     modifier: Modifier = Modifier,
     movies: List<Movie>,
-    onClick: (String) -> Unit
+    onClick: (Movie) -> Unit
 ) {
     LazyColumn(
         modifier = modifier,
@@ -28,10 +28,19 @@ fun MovieList(
             key = { movies[it].id },
             contentType = { movies[it].id }) { index ->
             MovieListItem(
-                modifier = Modifier.widthIn(700.dp).fillMaxWidth().padding(12.dp),
+                modifier = Modifier
+                    .widthIn(700.dp)
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = 12.dp,
+                    ).padding(
+                        top = if (index == 0) 12.dp else 0.dp
+                    ).padding(
+                        bottom = if (index == movies.size - 1) 12.dp else 0.dp
+                    ),
                 movie = movies[index],
                 onClick = {
-                    onClick(movies[index].id)
+                    onClick(movies[index])
                 }
             )
         }

@@ -36,9 +36,9 @@ class SearchViewModel(
                         SearchUiState(isLoading = true)
                     }
                     searchUseCase.execute(query)
-                        .onSuccess { data ->
+                        .onSuccess { movies ->
                             _uiState.update {
-                                SearchUiState(isLoading = false, movies = data)
+                                SearchUiState(isLoading = false, searchedMovies = movies)
                             }
                         }.onFailure {
                             _uiState.update {
@@ -49,13 +49,13 @@ class SearchViewModel(
         }
     }
 
-    fun onAction(action: MovesAction) {
+    fun onAction(action: MoviesAction) {
         when (action) {
-            is MovesAction.OnSearchQueryChange -> _query.update { action.query }
-            is MovesAction.OnTabSelected -> _uiState.update {
+            is MoviesAction.OnSearchQueryChange -> _query.update { action.query }
+            is MoviesAction.OnTabSelected -> _uiState.update {
                 it.copy(selectedTabIndex = action.tabIndex)
             }
-            is MovesAction.OnMoveClick -> {}
+            is MoviesAction.OnMovieClick -> {}
         }
     }
 }

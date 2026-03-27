@@ -45,14 +45,14 @@ fun MovieListItem(
                 .padding(16.dp)
                 .fillMaxWidth(),
             //.height(IntrinsicSize.Min),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             MovieItemImage(movie.imageUrl, onClick)
 
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .padding(horizontal = 16.dp)
                     .weight(1f),
                 verticalArrangement = Arrangement.Center
             ) {
