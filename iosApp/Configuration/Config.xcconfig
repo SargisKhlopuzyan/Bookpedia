@@ -1,7 +1,7 @@
 TEAM_ID=
 
-PRODUCT_NAME=Bookpedia
-PRODUCT_BUNDLE_IDENTIFIER=com.sargis.moviesearch.Bookpedia$(TEAM_ID)
+PRODUCT_NAME=MovieSearch
+PRODUCT_BUNDLE_IDENTIFIER=com.sargis.moviesearch.MovieSearch$(TEAM_ID)
 
 CURRENT_PROJECT_VERSION=1
 MARKETING_VERSION=1.0

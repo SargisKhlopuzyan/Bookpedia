@@ -17,8 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import bookpedia.feature.search.ui.generated.resources.Res
-import bookpedia.feature.search.ui.generated.resources.movie_error
+import moviesearch.feature.search.ui.generated.resources.Res
+import moviesearch.feature.search.ui.generated.resources.movie_error
 import coil3.compose.SubcomposeAsyncImage
 import com.sargis.moviesearch.feature.search.domain.mock.mockMovie
 import org.jetbrains.compose.resources.painterResource

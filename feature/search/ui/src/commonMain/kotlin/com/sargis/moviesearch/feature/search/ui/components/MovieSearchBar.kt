@@ -25,8 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import bookpedia.feature.search.ui.generated.resources.Res
-import bookpedia.feature.search.ui.generated.resources.search_hint
+import moviesearch.feature.search.ui.generated.resources.Res
+import moviesearch.feature.search.ui.generated.resources.search_hint
 import com.sargis.moviesearch.core.ui.DarkBlue
 import com.sargis.moviesearch.core.ui.DesertWhite
 import com.sargis.moviesearch.core.ui.SandYellow

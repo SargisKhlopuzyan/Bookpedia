@@ -1,4 +1,4 @@
-rootProject.name = "Bookpedia"
+rootProject.name = "MovieSearch"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

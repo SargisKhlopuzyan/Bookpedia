@@ -33,11 +33,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import bookpedia.feature.search.ui.generated.resources.Res
-import bookpedia.feature.search.ui.generated.resources.favorites
-import bookpedia.feature.search.ui.generated.resources.no_favorite_movies
-import bookpedia.feature.search.ui.generated.resources.no_search_results
-import bookpedia.feature.search.ui.generated.resources.search_results
+import moviesearch.feature.search.ui.generated.resources.Res
+import moviesearch.feature.search.ui.generated.resources.favorites
+import moviesearch.feature.search.ui.generated.resources.no_favorite_movies
+import moviesearch.feature.search.ui.generated.resources.no_search_results
+import moviesearch.feature.search.ui.generated.resources.search_results
 import com.sargis.moviesearch.core.ui.DarkBlue
 import com.sargis.moviesearch.core.ui.DesertWhite
 import com.sargis.moviesearch.core.ui.SandYellow
