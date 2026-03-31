@@ -13,9 +13,6 @@ val mockMovie = Movie(
     Random.nextInt(10)
 )
 
-val mockMovies = listOf(
-    mockMovie,
-    mockMovie.copy(id = "2"),
-    mockMovie.copy(id = "3"),
-    mockMovie.copy(id = "4")
-)
+val mockMovies = (1..100).map {
+    mockMovie.copy(id = "$it")
+}

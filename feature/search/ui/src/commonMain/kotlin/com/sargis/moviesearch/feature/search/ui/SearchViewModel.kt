@@ -4,6 +4,8 @@ import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.launch
+import com.sargis.moviesearch.core.domain.onError
+import com.sargis.moviesearch.core.domain.onSuccess
 import com.sargis.moviesearch.feature.search.domain.usecase.SearchUseCase
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.asStateFlow
@@ -40,7 +42,7 @@ class SearchViewModel(
                             _uiState.update {
                                 SearchUiState(isLoading = false, searchedMovies = movies)
                             }
-                        }.onFailure {
+                        }.onError {
                             _uiState.update {
                                 SearchUiState(isLoading = false, error = it.error)
                             }

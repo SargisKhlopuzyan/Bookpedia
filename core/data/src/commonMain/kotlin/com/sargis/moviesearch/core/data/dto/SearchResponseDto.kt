@@ -1,9 +1,9 @@
-package com.sargis.moviesearch.core.network.model
+package com.sargis.moviesearch.core.data.dto
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SearchResponse(
+data class SearchResponseDto(
     val page: Int,
     val results: List<MovieDTO>,
 )

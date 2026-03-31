@@ -1,4 +1,4 @@
-package com.sargis.moviesearch.core.network.client
+package com.sargis.moviesearch.core.data.client
 
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest

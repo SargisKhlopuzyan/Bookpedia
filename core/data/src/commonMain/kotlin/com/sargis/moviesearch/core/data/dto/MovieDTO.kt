@@ -1,5 +1,6 @@
-package com.sargis.moviesearch.core.network.model
+package com.sargis.moviesearch.core.data.dto
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -12,10 +13,14 @@ data class MovieDTO(
     //    val original_title: String,
     //    val overview: String,
     //    val popularity: Double,
-    val poster_path: String?,
-    val release_date: String,
+    @SerialName("poster_path")
+    val posterPath: String?,
+    @SerialName("release_date")
+    val releaseDate: String,
     val title: String,
     //    val video: Boolean,
-    val vote_average: Double,
-    val vote_count: Int
+    @SerialName("vote_average")
+    val averageVote: Double,
+    @SerialName("vote_count")
+    val voteCount: Int
 )

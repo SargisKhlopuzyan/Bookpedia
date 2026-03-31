@@ -24,7 +24,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Shared"
 
-            export(project(":core:network"))
+            export(project(":core:data"))
 
             export(project(":feature:search:data"))
             export(project(":feature:search:domain"))
@@ -50,7 +50,7 @@ kotlin {
 
         commonMain.dependencies {
             // api
-            implementation(projects.core.network)
+            implementation(projects.core.data)
 
             implementation(projects.feature.search.data)
             implementation(projects.feature.search.domain)

@@ -35,7 +35,7 @@ kotlin {
             implementation(libs.androidx.core.ktx)
             implementation(libs.androidx.appcompat)
             implementation(libs.androidx.activity.compose)
-            //            implementation(project.dependencies.platform(libs.androidx.compose.bom))
+            // implementation(project.dependencies.platform(libs.androidx.compose.bom))
         }
 
         commonMain.dependencies {

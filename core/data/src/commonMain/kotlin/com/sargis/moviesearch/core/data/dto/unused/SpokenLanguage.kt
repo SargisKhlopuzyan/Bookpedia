@@ -1,4 +1,4 @@
-package com.sargis.moviesearch.core.network.model
+package com.sargis.moviesearch.core.data.dto.unused
 
 data class SpokenLanguage(
     val english_name: String,

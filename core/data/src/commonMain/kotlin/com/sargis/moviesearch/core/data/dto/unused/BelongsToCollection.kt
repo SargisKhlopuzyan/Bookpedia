@@ -1,4 +1,4 @@
-package com.sargis.moviesearch.core.network.model
+package com.sargis.moviesearch.core.data.dto.unused
 
 data class BelongsToCollection(
     val backdrop_path: String,

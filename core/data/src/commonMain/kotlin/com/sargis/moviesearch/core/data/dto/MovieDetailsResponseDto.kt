@@ -1,9 +1,10 @@
-package com.sargis.moviesearch.core.network.model
+package com.sargis.moviesearch.core.data.dto
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MovieDetailsResponse(
+data class MovieDetailsResponseDto(
 //    val adult: Boolean,
 //    val backdrop_path: String,
 //    val belongs_to_collection: BelongsToCollection,
@@ -12,15 +13,19 @@ data class MovieDetailsResponse(
 //    val homepage: String,
     val id: Int,
 //    val imdb_id: String,
-//    val origin_country: List<String>,
-//    val original_language: String,
+    @SerialName("origin_country")
+    val originCountry: List<String>,
+    @SerialName("original_language")
+    val originalLanguage: String,
 //    val original_title: String,
     val overview: String,
 //    val popularity: Double,
-    val poster_path: String?,
+    @SerialName("poster_path")
+    val posterPath: String?,
 //    val production_companies: List<ProductionCompany>,
 //    val production_countries: List<ProductionCountry>,
-//    val release_date: String,
+    @SerialName("release_date")
+    val releaseDate: String,
 //    val revenue: Int,
 //    val runtime: Int,
 //    val spoken_languages: List<SpokenLanguage>,
@@ -28,6 +33,8 @@ data class MovieDetailsResponse(
 //    val tagline: String,
     val title: String,
 //    val video: Boolean,
-//    val vote_average: Double,
-//    val vote_count: Int
+    @SerialName("vote_average")
+    val averageVote: Double,
+    @SerialName("vote_count")
+    val voteCount: Int
 )

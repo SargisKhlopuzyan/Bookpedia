@@ -4,6 +4,8 @@ import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.launch
+import com.sargis.moviesearch.core.domain.onError
+import com.sargis.moviesearch.core.domain.onSuccess
 import com.sargis.moviesearch.feature.details.domain.usecase.GetMovieDetailsUseCase
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -27,7 +29,7 @@ class DetailsViewModel(
                     _uiState.update {
                         DetailsUiState(isLoading = false, data = data)
                     }
-                }.onFailure {
+                }.onError {
                     _uiState.update {
                         DetailsUiState(isLoading = false, error = it.error)
                     }

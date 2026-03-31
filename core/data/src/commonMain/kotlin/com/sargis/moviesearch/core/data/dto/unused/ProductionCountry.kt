@@ -1,4 +1,4 @@
-package com.sargis.moviesearch.core.network.model
+package com.sargis.moviesearch.core.data.dto.unused
 
 data class ProductionCountry(
     val iso_3166_1: String,

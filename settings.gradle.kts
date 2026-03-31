@@ -36,10 +36,9 @@ include(":composeApp")
 
 include(":shared")
 
-include(":core:network")
-include(":core:ui")
-
+include(":core:data")
 include(":core:domain")
+include(":core:ui")
 
 include(":feature:search:data")
 include(":feature:search:domain")

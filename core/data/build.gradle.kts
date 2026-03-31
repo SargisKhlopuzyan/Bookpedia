@@ -32,6 +32,8 @@ kotlin {
             implementation(libs.ktor.client.android)
         }
         commonMain.dependencies {
+            api(projects.core.domain)
+
             implementation(libs.kotlinx.serialization)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
@@ -59,7 +61,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.sargis.moviesearch.core.network"
+    namespace = "com.sargis.moviesearch.core.data"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     compileOptions {
