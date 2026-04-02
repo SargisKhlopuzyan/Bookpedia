@@ -88,6 +88,7 @@ jetbrains-compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", 
 #material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }

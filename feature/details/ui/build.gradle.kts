@@ -39,6 +39,8 @@ kotlin {
         }
 
         commonMain.dependencies {
+//            implementation(compose.components.resources)
+
             implementation(projects.core.ui)
             implementation(projects.feature.details.domain)
 
@@ -91,6 +93,10 @@ android {
 dependencies {
     debugImplementation(libs.jetbrains.compose.ui.tooling)
     //"androidRuntimeClasspath"(libs.androidx.compose.ui.tooling)
+}
+
+compose.resources {
+    publicResClass = true
 }
 
 //compose.desktop {

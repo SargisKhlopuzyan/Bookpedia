@@ -59,6 +59,7 @@ kotlin {
             implementation(libs.jetbrains.compose.foundation)
             implementation(libs.jetbrains.compose.material3)
             implementation(libs.jetbrains.compose.ui)
+
             implementation(libs.jetbrains.compose.components.resources)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
@@ -86,6 +87,10 @@ android {
 dependencies {
     debugImplementation(libs.jetbrains.compose.ui.tooling)
     //"androidRuntimeClasspath"(libs.androidx.compose.ui.tooling)
+}
+
+compose.resources {
+    publicResClass = true
 }
 
 //compose.desktop {

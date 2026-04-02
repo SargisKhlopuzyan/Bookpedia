@@ -41,14 +41,15 @@ import com.sargis.moviesearch.core.ui.DarkBlue
 import com.sargis.moviesearch.core.ui.DesertWhite
 import com.sargis.moviesearch.core.ui.PulseAnimation
 import com.sargis.moviesearch.core.ui.SandYellow
-import moviesearch.feature.details.ui.generated.resources.Res
-import moviesearch.feature.details.ui.generated.resources.go_back
-import moviesearch.feature.details.ui.generated.resources.mark_as_favorite
-import moviesearch.feature.details.ui.generated.resources.movie_cover
-import moviesearch.feature.details.ui.generated.resources.movie_error
-import moviesearch.feature.details.ui.generated.resources.remove_from_favorites
+import moviesearch.core.ui.generated.resources.go_back
+import moviesearch.core.ui.generated.resources.movie_cover
+import moviesearch.core.ui.generated.resources.Res
+import moviesearch.core.ui.generated.resources.mark_as_favorite
+import moviesearch.core.ui.generated.resources.movie_error
+import moviesearch.core.ui.generated.resources.remove_from_favorites
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+
 
 @Composable
 fun BlurredImageBackground(

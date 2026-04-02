@@ -1,5 +1,6 @@
 package com.sargis.moviesearch.feature.search.ui
 
+//import moviesearch.feature.search.ui.generated.resources.Res
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,16 +34,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import moviesearch.feature.search.ui.generated.resources.Res
-import moviesearch.feature.search.ui.generated.resources.favorites
-import moviesearch.feature.search.ui.generated.resources.no_favorite_movies
-import moviesearch.feature.search.ui.generated.resources.no_search_results
-import moviesearch.feature.search.ui.generated.resources.search_results
 import com.sargis.moviesearch.core.ui.DarkBlue
 import com.sargis.moviesearch.core.ui.DesertWhite
 import com.sargis.moviesearch.core.ui.SandYellow
 import com.sargis.moviesearch.feature.search.ui.components.MovieList
 import com.sargis.moviesearch.feature.search.ui.components.MovieSearchBar
+import moviesearch.core.ui.generated.resources.Res
+import moviesearch.core.ui.generated.resources.favorites
+import moviesearch.core.ui.generated.resources.no_favorite_movies
+import moviesearch.core.ui.generated.resources.no_search_results
+import moviesearch.core.ui.generated.resources.search_results
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -81,7 +82,7 @@ private fun SearchScreenContent(
 
     val pagerState = rememberPagerState { 2 }
     val searchResultsListState = rememberLazyListState()
-    val favoriteMovieListState = rememberLazyListState()
+    rememberLazyListState()
 
     LaunchedEffect(uiState.searchedMovies) {
         searchResultsListState.animateScrollToItem(0)

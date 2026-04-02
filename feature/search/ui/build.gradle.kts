@@ -64,7 +64,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-                implementation(libs.jetbrains.compose.material.icons.extended)
+            implementation(libs.jetbrains.compose.material.icons.extended)
         }
 
         commonTest.dependencies {
@@ -89,6 +89,10 @@ android {
 dependencies {
     debugImplementation(libs.jetbrains.compose.ui.tooling)
     //"androidRuntimeClasspath"(libs.androidx.compose.ui.tooling)
+}
+
+compose.resources {
+    publicResClass = true
 }
 
 //compose.desktop {
