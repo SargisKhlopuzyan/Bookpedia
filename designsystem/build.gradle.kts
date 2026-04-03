@@ -21,7 +21,7 @@ kotlin {
     iosSimulatorArm64()
 
     jvm()
-//    jvm("desktop")
+    // jvm("desktop")
 
     sourceSets {
 
@@ -73,7 +73,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.sargis.moviesearch.core.ui"
+    namespace = "com.sargis.moviesearch.designsystem"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -87,4 +87,8 @@ android {
 dependencies {
     debugImplementation(libs.jetbrains.compose.ui.tooling)
     //"androidRuntimeClasspath"(libs.androidx.compose.ui.tooling)
+}
+
+compose.resources {
+    publicResClass = true
 }

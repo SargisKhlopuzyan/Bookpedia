@@ -40,6 +40,8 @@ include(":core:data")
 include(":core:domain")
 include(":core:ui")
 
+include(":designsystem")
+
 include(":feature:search:data")
 include(":feature:search:domain")
 include(":feature:search:ui")

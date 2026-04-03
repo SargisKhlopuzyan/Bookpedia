@@ -28,8 +28,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.sargis.moviesearch.core.ui.DarkBlue
 import com.sargis.moviesearch.core.ui.DesertWhite
 import com.sargis.moviesearch.core.ui.SandYellow
-import moviesearch.core.ui.generated.resources.Res
-import moviesearch.core.ui.generated.resources.search_hint
+import moviesearch.designsystem.generated.resources.Res
+import moviesearch.designsystem.generated.resources.search_hint
 import org.jetbrains.compose.resources.stringResource
 
 @Composable

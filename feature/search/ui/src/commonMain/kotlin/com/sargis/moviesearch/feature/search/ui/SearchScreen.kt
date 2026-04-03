@@ -1,6 +1,5 @@
 package com.sargis.moviesearch.feature.search.ui
 
-//import moviesearch.feature.search.ui.generated.resources.Res
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,11 +38,11 @@ import com.sargis.moviesearch.core.ui.DesertWhite
 import com.sargis.moviesearch.core.ui.SandYellow
 import com.sargis.moviesearch.feature.search.ui.components.MovieList
 import com.sargis.moviesearch.feature.search.ui.components.MovieSearchBar
-import moviesearch.core.ui.generated.resources.Res
-import moviesearch.core.ui.generated.resources.favorites
-import moviesearch.core.ui.generated.resources.no_favorite_movies
-import moviesearch.core.ui.generated.resources.no_search_results
-import moviesearch.core.ui.generated.resources.search_results
+import moviesearch.designsystem.generated.resources.Res
+import moviesearch.designsystem.generated.resources.favorites
+import moviesearch.designsystem.generated.resources.no_favorite_movies
+import moviesearch.designsystem.generated.resources.no_search_results
+import moviesearch.designsystem.generated.resources.search_results
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 

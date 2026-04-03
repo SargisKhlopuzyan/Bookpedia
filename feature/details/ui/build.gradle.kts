@@ -21,7 +21,7 @@ kotlin {
     iosSimulatorArm64()
 
     jvm()
-//    jvm("desktop")
+    // jvm("desktop")
 
     sourceSets {
 
@@ -39,9 +39,9 @@ kotlin {
         }
 
         commonMain.dependencies {
-//            implementation(compose.components.resources)
-
             implementation(projects.core.ui)
+            implementation(projects.designsystem)
+
             implementation(projects.feature.details.domain)
 
             implementation(libs.kmp.observableviewmodel.core)
@@ -55,7 +55,7 @@ kotlin {
 
             implementation(project.dependencies.platform(libs.androidx.compose.bom))
 
-//            implementation(libs.androidx.compose.material.icons.extended)
+            // implementation(libs.androidx.compose.material.icons.extended)
 
             // implementation(libs.jetbrains.compose.ui.tooling)
             implementation(libs.jetbrains.compose.ui.tooling.preview)
@@ -94,19 +94,3 @@ dependencies {
     debugImplementation(libs.jetbrains.compose.ui.tooling)
     //"androidRuntimeClasspath"(libs.androidx.compose.ui.tooling)
 }
-
-compose.resources {
-    publicResClass = true
-}
-
-//compose.desktop {
-//    application {
-//        mainClass = "com.sargis.moviesearch.MainKt"
-//
-//        nativeDistributions {
-//            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-//            packageName = "com.sargis.moviesearch"
-//            packageVersion = "1.0.0"
-//        }
-//    }
-//}

@@ -19,8 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.SubcomposeAsyncImage
 import com.sargis.moviesearch.feature.search.domain.mock.mockMovie
-import moviesearch.core.ui.generated.resources.Res
-import moviesearch.core.ui.generated.resources.movie_error
+import moviesearch.designsystem.generated.resources.Res
+import moviesearch.designsystem.generated.resources.movie_error
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
