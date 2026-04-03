@@ -25,7 +25,7 @@ data class MovieDetailsResponseDto(
 //    val production_companies: List<ProductionCompany>,
 //    val production_countries: List<ProductionCountry>,
     @SerialName("release_date")
-    val releaseDate: String,
+    val releaseDate: String? = null,
 //    val revenue: Int,
 //    val runtime: Int,
 //    val spoken_languages: List<SpokenLanguage>,
@@ -34,7 +34,7 @@ data class MovieDetailsResponseDto(
     val title: String,
 //    val video: Boolean,
     @SerialName("vote_average")
-    val averageVote: Double,
+    val averageVote: Double? = null,
     @SerialName("vote_count")
-    val voteCount: Int
+    val voteCount: Int? = null
 )

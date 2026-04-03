@@ -63,12 +63,15 @@ fun MovieListItem(
                     overflow = TextOverflow.Ellipsis
                 )
 
-                if (movie.voteCount > 0) {
+                val voteCount = movie.voteCount
+                val averageVote = movie.averageVote
+
+                if (voteCount != null && averageVote != null && voteCount > 0) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "${round(movie.averageVote * 10) / 10.0}",
+                            text = "${round(averageVote * 10) / 10.0}",
                             style = MaterialTheme.typography.bodyMedium,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -83,12 +86,14 @@ fun MovieListItem(
                     }
                 }
 
-                Text(
-                    text = movie.releaseDate,
-                    style = MaterialTheme.typography.bodyMedium,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
+                movie.releaseDate?.let { releaseDate ->
+                    Text(
+                        text = releaseDate,
+                        style = MaterialTheme.typography.bodyMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
             }
 
             Icon(

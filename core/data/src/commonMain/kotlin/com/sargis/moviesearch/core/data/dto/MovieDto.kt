@@ -16,11 +16,11 @@ data class MovieDto(
     @SerialName("poster_path")
     val posterPath: String?,
     @SerialName("release_date")
-    val releaseDate: String,
+    val releaseDate: String? = null,
     val title: String,
     //    val video: Boolean,
     @SerialName("vote_average")
-    val averageVote: Double,
+    val averageVote: Double? = null,
     @SerialName("vote_count")
-    val voteCount: Int
+    val voteCount: Int? = null
 )

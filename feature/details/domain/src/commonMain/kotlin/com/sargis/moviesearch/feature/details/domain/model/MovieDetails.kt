@@ -9,7 +9,7 @@ data class MovieDetails(
     val originCountry: List<String>,
     val originalLanguage: String,
     val posterPath: String?,
-    val releaseDate: String,
-    val averageVote: Double,
-    val voteCount: Int
+    val releaseDate: String?,
+    val averageVote: Double?,
+    val voteCount: Int?
 )

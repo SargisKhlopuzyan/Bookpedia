@@ -36,4 +36,12 @@ class DetailsViewModel(
                 }
         }
     }
+
+    fun onAction(action: MovieDetailsAction) {
+        when (action) {
+            MovieDetailsAction.OnBackClick -> {}
+            MovieDetailsAction.OnFavoriteClick -> {}
+            is MovieDetailsAction.OnSelectedMovieChanged -> {}
+        }
+    }
 }

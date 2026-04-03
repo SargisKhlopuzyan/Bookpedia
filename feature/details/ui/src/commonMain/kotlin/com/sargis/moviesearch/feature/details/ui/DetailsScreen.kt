@@ -30,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.SubcomposeAsyncImage
+import com.sargis.moviesearch.feature.details.ui.components.BlurredImageBackground
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -49,7 +50,12 @@ fun DetailsScreen(
     DetailsScreenContent(
         modifier = modifier,
         uiState = uiState,
-        onBackClick = onBackClick
+        onAction = { action ->
+            when (action) {
+                MovieDetailsAction.OnBackClick -> onBackClick()
+                else -> viewModel.onAction(action)
+            }
+        }
     )
 }
 
@@ -58,110 +64,123 @@ fun DetailsScreen(
 fun DetailsScreenContent(
     modifier: Modifier = Modifier,
     uiState: DetailsUiState,
-    onBackClick: () -> Unit
+    onAction: (MovieDetailsAction) -> Unit
 ) {
-    Scaffold(
-        modifier = modifier,
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = "Movie Details")
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
-                        )
+    BlurredImageBackground(
+        imageUrl = uiState.movieDetails?.imageUrl,
+        isFavorite = uiState.isFavorite,
+        onFavoriteClick = {
+            onAction(MovieDetailsAction.OnFavoriteClick)
+        },
+        onBackClick = {
+            onAction(MovieDetailsAction.OnBackClick)
+        }
+    ) {
+//        Scaffold(
+//            modifier = modifier,
+//            topBar = {
+//                TopAppBar(
+//                    title = {
+//                        Text(text = "Movie Details")
+//                    },
+//                    navigationIcon = {
+//                        IconButton(onClick = {
+//                            onAction(MovieDetailsAction.OnBackClick)
+//                        }) {
+//                            Icon(
+//                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+//                                contentDescription = "Back"
+//                            )
+//                        }
+//                    }
+//                )
+//            }
+//        ) { innerPadding ->
+            when {
+                uiState.isLoading -> {
+                    Box(
+                        modifier = Modifier
+//                            .padding(innerPadding)
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
                     }
                 }
-            )
-        }
-    ) { innerPadding ->
-        when {
-            uiState.isLoading -> {
-                Box(
-                    modifier = Modifier
-                        .padding(innerPadding)
-                        .fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
+
+                uiState.error.isNotEmpty() -> {
+                    Box(
+                        modifier = Modifier
+//                            .padding(innerPadding)
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(uiState.error)
+                    }
+                }
+
+                uiState.movieDetails != null -> {
+
+                    val movieDetails = uiState.movieDetails
+
+                    Column(
+                        modifier = Modifier
+//                            .padding(innerPadding)
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState())
+                    ) {
+//                        SubcomposeAsyncImage(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .height(600.dp),
+//                            model = movieDetails.imageUrl,
+//                            loading = {
+//                                Box(
+//                                    Modifier
+//                                        .fillMaxWidth()
+//                                        .height(600.dp),
+//                                    contentAlignment = Alignment.Center
+//                                ) {
+//                                    CircularProgressIndicator()
+//                                }
+//                            }, error = {
+//                                Box(
+//                                    Modifier
+//                                        .fillMaxWidth()
+//                                        .height(600.dp),
+//                                    contentAlignment = Alignment.Center
+//                                ) {
+//                                    Text("No Image Available")
+//                                }
+//                            }, contentDescription = null,
+//                            contentScale = ContentScale.Crop
+//                        )
+
+                        Spacer(Modifier.height(16.dp))
+
+                        Text(
+                            text = movieDetails.title, style = MaterialTheme.typography.headlineLarge,
+                            modifier = Modifier
+                                .padding(horizontal = 12.dp)
+                                .fillMaxWidth(),
+                            textAlign = TextAlign.Start
+                        )
+
+                        Spacer(Modifier.height(12.dp))
+
+                        Text(
+                            text = movieDetails.overview,
+                            modifier = Modifier
+                                .padding(horizontal = 12.dp)
+                                .fillMaxWidth(),
+                            textAlign = TextAlign.Start
+                        )
+
+                        Spacer(Modifier.height(64.dp))
+                    }
                 }
             }
-
-            uiState.error.isNotEmpty() -> {
-                Box(
-                    modifier = Modifier
-                        .padding(innerPadding)
-                        .fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(uiState.error)
-                }
-            }
-
-            uiState.movieDetails != null -> {
-
-                val movieDetails = uiState.movieDetails
-
-                Column(
-                    modifier = Modifier
-                        .padding(innerPadding)
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                ) {
-                    SubcomposeAsyncImage(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(600.dp),
-                        model = movieDetails.imageUrl,
-                        loading = {
-                            Box(
-                                Modifier
-                                    .fillMaxWidth()
-                                    .height(600.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                CircularProgressIndicator()
-                            }
-                        }, error = {
-                            Box(
-                                Modifier
-                                    .fillMaxWidth()
-                                    .height(600.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Text("No Image Available")
-                            }
-                        }, contentDescription = null,
-                        contentScale = ContentScale.Crop
-                    )
-
-                    Spacer(Modifier.height(16.dp))
-
-                    Text(
-                        text = movieDetails.title, style = MaterialTheme.typography.headlineLarge,
-                        modifier = Modifier
-                            .padding(horizontal = 12.dp)
-                            .fillMaxWidth(),
-                        textAlign = TextAlign.Start
-                    )
-
-                    Spacer(Modifier.height(12.dp))
-
-                    Text(
-                        text = movieDetails.overview,
-                        modifier = Modifier
-                            .padding(horizontal = 12.dp)
-                            .fillMaxWidth(),
-                        textAlign = TextAlign.Start
-                    )
-
-                    Spacer(Modifier.height(64.dp))
-                }
-            }
-        }
+//        }
     }
 }
 
@@ -170,5 +189,5 @@ fun DetailsScreenContent(
 fun DetailsScreenContentPreview() {
     DetailsScreenContent(
         uiState = DetailsUiState(),
-    ) {}
+    ) { }
 }
